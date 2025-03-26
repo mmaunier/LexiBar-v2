@@ -19,7 +19,7 @@ LexiBar v2 est une barre d'outils légère et efficace qui permet d'accéder rap
 - **Sans installation** : application portable et légère
 
 ## Prérequis
-- **Qt** : 6.2 ou supérieur
+- **Qt** : 6.8 ou supérieur
 - **Compilateur C++** : GCC, Clang ou MSVC
 - **CMake** : 3.16 ou supérieur
 
