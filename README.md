@@ -1,7 +1,7 @@
 # LexiBar v2
 
 ![Licence MIT](https://img.shields.io/badge/Licence-MIT-green.svg)
-![Qt Version](https://img.shields.io/badge/Qt-6.2%2B-blue.svg)
+![Qt Version](https://img.shields.io/badge/Qt-6.8%2B-blue.svg)
 ![CMake Version](https://img.shields.io/badge/CMake-3.16%2B-orange.svg)
 
 ## Aperçu
@@ -56,16 +56,20 @@ make
 ```
 LexiBar-v2/
 ├── CMakeLists.txt        # Configuration CMake
+├── build/                # Répertoire de build
+│   └── Lexibar-v2        # Exécutable de l'application
 ├── src/                  # Code source C++
 │   ├── main.cpp          # Point d'entrée de l'application
 │   ├── gestionlexibar.h  # Classe pour la gestion du presse-papier
 │   └── gestionlexibar.cpp
 ├── qml/                  # Interface utilisateur QML
 │   └── main.qml          # Interface principale
-└── ressources/           # Ressources de l'application
-    ├── qml.qrc           # Fichier de ressources Qt
-    └── media/            # Images et icônes
-        └── drapeau.png   # Icône de l'application
+├── ressources/           # Ressources de l'application
+│   ├── qml.qrc           # Fichier de ressources Qt
+│   └── media/            # Images et icônes
+│       └── drapeau.png   # Icône de l'application
+├── README.md             # Documentation du projet
+└── screenshot.png        # Capture d'écran de l'application
 ```
 
 ## Technologies utilisées
