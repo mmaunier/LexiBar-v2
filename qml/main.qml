@@ -2,16 +2,54 @@ import QtQuick
 import QtQuick.Controls
 import QtQuick.Window
 
-ApplicationWindow {
+Window {
     id: mainWindow
     visible: true
     title: qsTr("LexiBar v2")
     width: 378
-    height: 20
+    height: isWayland ? 29 : 29
+    
+    // Utiliser des flags qui préservent la barre de titre
+    flags: Qt.Window | Qt.WindowStaysOnTopHint
 
+    // Détection dynamique de Wayland vs X11
+    readonly property bool isWayland: Qt.platform.pluginName.toLowerCase().includes("wayland")
 
-    // Utiliser Qt.Tool pour réduire les décorations de fenêtre
-    flags: Qt.Tool | Qt.WindowStaysOnTopHint | Qt.MSWindowsFixedSizeDialogHint
+    // Timer pour vérifier périodiquement si la fenêtre est active 
+    // et la ramener au premier plan (solution pour Wayland)
+    Timer {
+        id: activationTimer
+        interval: 1000 // Vérifier toutes les secondes
+        running: isWayland && visible
+        repeat: true
+        onTriggered: {
+            if (!mainWindow.active) {
+                // Technique 1: Activer la fenêtre
+                mainWindow.requestActivate();
+                
+                // Technique 2: Forcer la visibilité
+                if (!mainWindow.visible) {
+                    mainWindow.visible = true;
+                }
+            }
+        }
+    }
+
+    Component.onCompleted: {
+        console.log("Environnement détecté: " + Qt.platform.pluginName);
+        console.log("Utilisation de la hauteur: " + height + "px");
+        
+        // Positionner en haut de l'écran
+        x = (Screen.width - width) / 2;
+        y = 0;
+        
+        // // Sous Wayland, positionner dans un coin spécifique peut aider
+        // if (isWayland) {
+        //     // Position en haut à droite
+        //     x = Screen.width - width;
+        //     y = 0;
+        // }
+    }
 
     // Couleur de fond
     color: "#f0f0f0"
